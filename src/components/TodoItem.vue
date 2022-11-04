@@ -1,22 +1,24 @@
 <template>
   <div id="todo-item">
-    <h1>{{ props.todo }}</h1>
-    <button id="remove-button" @click="emits('remove', todo)">X</button>
+    <h1 :class="{ done: todo.done }">{{ props.todo.description }}</h1>
+    <button id="remove-button" :disabled="todo.done" @click="emits('do', todo)">
+      X
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
+import Todo from "@/models/Todo";
 import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({
   todo: {
-    type: String,
+    type: Todo,
     required: true,
   },
 });
 
-const emits = defineEmits(["remove"]);
-
+const emits = defineEmits(["do"]);
 </script>
 
 <style>
@@ -27,7 +29,10 @@ const emits = defineEmits(["remove"]);
 }
 
 #remove-button {
-  margin-left: 2px;
   height: fit-content;
+}
+
+.done {
+  text-decoration: line-through;
 }
 </style>

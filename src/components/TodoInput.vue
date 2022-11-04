@@ -11,8 +11,9 @@ const currentTodo = ref<string>("");
 
 const sendTodo = () => {
   if (!currentTodo.value) return;
+
   emits("new", currentTodo.value);
-  currentTodo.value = ""
+  currentTodo.value = "";
 };
 </script>
 

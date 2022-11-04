@@ -5,24 +5,34 @@
       v-for="(todo, index) in todos"
       :key="index"
       :todo="todo"
-      @remove="removeTodo"
+      @do="doTodo"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import Todo from "@/models/Todo";
 import { ref } from "vue";
 import TodoInput from "./TodoInput.vue";
 import TodoItem from "./TodoItem.vue";
 
-const todos = ref<string[]>([]);
+const todos = ref<Todo[]>([]);
 
-const addTodo = (todo: string) => {
-  todos.value.push(todo);
+const saveTodosInLocalStorage = (todos: Todo[]) => {
+  localStorage.setItem("todos", JSON.stringify(todos));
 };
 
-const removeTodo = (todoToRemove: string) => {
-  todos.value = todos.value.filter((todo) => todo !== todoToRemove);
+const addTodo = (todoDescription: string) => {
+  todos.value.push(new Todo(todoDescription, false));
+  saveTodosInLocalStorage(todos.value);
+};
+
+const doTodo = (todoToDo: Todo) => {
+  const todo = todos.value.find(
+    (todo) => todo.description === todoToDo.description
+  );
+  todo?.do();
+  saveTodosInLocalStorage(todos.value);
 };
 </script>
 
