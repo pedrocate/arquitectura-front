@@ -22,8 +22,8 @@ const saveTodosInLocalStorage = (todos: Todo[]) => {
   localStorage.setItem("todos", JSON.stringify(todos));
 };
 
-const addTodo = (todoDescription: string) => {
-  todos.value.push(new Todo(todoDescription, false));
+const addTodo = (description: string) => {
+  todos.value.push(new Todo(description));
   saveTodosInLocalStorage(todos.value);
 };
 
