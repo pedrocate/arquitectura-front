@@ -1,6 +1,6 @@
-import Todo from "@/models/Todo";
-import TodoLocalStorageRepository from "@/models/TodoLocalStorageRepository";
-import TodoRepository from "@/models/TodoRepository";
+import Todo from "@/Todo/domain/models/Todo";
+import TodoLocalStorageRepository from "@/Todo/infrastructure/repository/TodoLocalStorageRepository";
+import TodoRepository from "@/Todo/domain/models/TodoRepository";
 
 export default (todoRepository: TodoRepository) => {
   const repository: TodoRepository = todoRepository;

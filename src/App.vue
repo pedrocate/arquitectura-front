@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import TodoView from "./components/TodoView.vue";
+import TodoView from "@/Todo/infrastructure/components/TodoView.vue";
 </script>
 
 <style>
