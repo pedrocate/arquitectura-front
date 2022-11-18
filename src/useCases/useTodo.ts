@@ -1,13 +1,13 @@
 import Todo from "@/models/Todo";
 import TodoLocalStorageRepository from "@/models/TodoLocalStorageRepository";
+import TodoRepository from "@/models/TodoRepository";
 
-export default () => {
-  const todoRepository: TodoLocalStorageRepository =
-    new TodoLocalStorageRepository();
+export default (todoRepository: TodoRepository) => {
+  const repository: TodoRepository = todoRepository;
 
   const addTodo = (description: string) => {
     const todo = new Todo(description);
-    todoRepository.create(todo);
+    repository.create(todo);
 
     return todo;
   };
@@ -15,7 +15,7 @@ export default () => {
   const doTodo = (todoToDo: Todo) => {
     if (!todoToDo.done) {
       todoToDo.do();
-      todoRepository.update(todoToDo);
+      repository.update(todoToDo);
     }
   };
 
