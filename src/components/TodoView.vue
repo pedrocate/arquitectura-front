@@ -11,28 +11,26 @@
 </template>
 
 <script setup lang="ts">
-import Todo from "@/models/Todo";
 import { ref } from "vue";
 import TodoInput from "./TodoInput.vue";
 import TodoItem from "./TodoItem.vue";
+import Todo from "@/models/Todo";
+import useTodo from "@/useCases/useTodo";
+
+const { addTodo: addTodoUseCase, doTodo: doTodoUseCase } = useTodo();
 
 const todos = ref<Todo[]>([]);
 
-const saveTodosInLocalStorage = (todos: Todo[]) => {
-  localStorage.setItem("todos", JSON.stringify(todos));
+const addTodo = (description: string) => {
+  const newTodo: Todo = addTodoUseCase(description);
+
+  if (newTodo) {
+    todos.value.push(newTodo);
+  }
 };
 
-const addTodo = (todoDescription: string) => {
-  todos.value.push(new Todo(todoDescription, false));
-  saveTodosInLocalStorage(todos.value);
-};
-
-const doTodo = (todoToDo: Todo) => {
-  const todo = todos.value.find(
-    (todo) => todo.description === todoToDo.description
-  );
-  todo?.do();
-  saveTodosInLocalStorage(todos.value);
+const doTodo = (todo: Todo) => {
+  doTodoUseCase(todo);
 };
 </script>
 
