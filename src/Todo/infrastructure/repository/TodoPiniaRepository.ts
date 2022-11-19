@@ -1,7 +1,10 @@
 import Todo from "@/Todo/domain/models/Todo";
 import TodoRepository from "@/Todo/domain/models/TodoRepository";
 import { TodoStore, useTodoStore } from "@/Todo/infrastructure/store/pinia";
+import "reflect-metadata";
+import { injectable } from "inversify";
 
+@injectable()
 export default class TodoPiniaRepository implements TodoRepository {
   store: TodoStore = useTodoStore();
 

@@ -1,22 +1,44 @@
+import "reflect-metadata";
 import Todo from "@/Todo/domain/models/Todo";
-import TodoLocalStorageRepository from "@/Todo/infrastructure/repository/TodoLocalStorageRepository";
 import TodoRepository from "@/Todo/domain/models/TodoRepository";
+import { inject, injectable } from "inversify";
+import { TYPES } from "@/types";
+import { myContainer } from "@/inversify.config";
 
-export default (todoRepository: TodoRepository) => {
-  const repository: TodoRepository = todoRepository;
+@injectable()
+class TodoUseCases {
+  repository: TodoRepository;
 
-  const addTodo = (description: string) => {
+  constructor(
+    @inject(TYPES.TodoRepository) todoRepository: TodoRepository
+  ) {
+    this.repository = todoRepository;
+  }
+
+  public addTodo(description: string) {
     const todo = new Todo(description);
-    repository.create(todo);
+    this.repository.create(todo);
 
     return todo;
+  }
+
+  public doTodo(todoToDo: Todo) {
+    if (!todoToDo.done) {
+      todoToDo.do();
+      this.repository.update(todoToDo);
+    }
+  }
+}
+
+export default () => {
+  const useCases = myContainer.resolve(TodoUseCases);
+
+  const addTodo = (description: string) => {
+    return useCases.addTodo(description);
   };
 
   const doTodo = (todoToDo: Todo) => {
-    if (!todoToDo.done) {
-      todoToDo.do();
-      repository.update(todoToDo);
-    }
+    useCases.doTodo(todoToDo);
   };
 
   return {

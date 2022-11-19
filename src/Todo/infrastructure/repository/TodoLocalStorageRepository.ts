@@ -1,6 +1,9 @@
 import Todo from "@/Todo/domain/models/Todo";
 import TodoRepository from "@/Todo/domain/models/TodoRepository";
+import "reflect-metadata";
+import { injectable } from "inversify";
 
+@injectable()
 export default class TodoLocalStorageRepository implements TodoRepository {
   localStorageKey: string = "todo";
 
