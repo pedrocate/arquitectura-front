@@ -1,11 +1,11 @@
-import Todo from "@/Todo/domain/models/Todo";
-import TodoRepository from "@/Todo/domain/models/TodoRepository";
+import Todo from "@/Todo/domain/Todo";
+import ITodoRepository from "@/Todo/domain/ITodoRepository";
 import store from "@/Todo/infrastructure/store/vuex";
 import "reflect-metadata";
 import { injectable } from "inversify";
 
 @injectable()
-export default class TodoVuexRepository implements TodoRepository {
+export default class TodoVuexRepository implements ITodoRepository {
   public getAll(): Todo[] {
     return store.state.todos;
   }

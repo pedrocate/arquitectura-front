@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import Todo from "@/Todo/domain/models/Todo";
+import Todo from "@/Todo/domain/Todo";
 import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({

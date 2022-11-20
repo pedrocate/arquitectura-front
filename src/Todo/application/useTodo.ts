@@ -1,18 +1,18 @@
 import "reflect-metadata";
-import Todo from "@/Todo/domain/models/Todo";
-import TodoRepository from "@/Todo/domain/models/TodoRepository";
+import Todo from "@/Todo/domain/Todo";
+import ITodoRepository from "@/Todo/domain/ITodoRepository";
 import { inject, injectable } from "inversify";
 import { TYPES } from "@/types";
 import { myContainer } from "@/inversify.config";
 
 @injectable()
 class TodoUseCases {
-  private repository: TodoRepository;
+  private repository: ITodoRepository;
 
   constructor(
-    @inject(TYPES.TodoRepository) todoRepository: TodoRepository
+    @inject(TYPES.ITodoRepository) ITodoRepository: ITodoRepository
   ) {
-    this.repository = todoRepository;
+    this.repository = ITodoRepository;
   }
 
   public addTodo(description: string) {
