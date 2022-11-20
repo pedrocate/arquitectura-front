@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import Todo from "@/Todo/domain/models/Todo";
+import Todo from "@/Todo/domain/Todo";
 
 export type TodoStore = {
   todos: Todo[];
