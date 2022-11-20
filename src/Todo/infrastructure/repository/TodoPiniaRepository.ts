@@ -1,8 +1,8 @@
-import Todo from "@/Todo/domain/models/Todo";
-import TodoRepository from "@/Todo/domain/models/TodoRepository";
+import Todo from "@/Todo/domain/Todo";
+import ITodoRepository from "@/Todo/domain/ITodoRepository";
 import { TodoStore, useTodoStore } from "@/Todo/infrastructure/store/pinia";
 
-export default class TodoPiniaRepository implements TodoRepository {
+export default class TodoPiniaRepository implements ITodoRepository {
   private store: TodoStore = useTodoStore();
 
   public getAll(): Todo[] {
