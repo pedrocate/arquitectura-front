@@ -3,7 +3,7 @@ import TodoRepository from "@/Todo/domain/models/TodoRepository";
 import { TodoStore, useTodoStore } from "@/Todo/infrastructure/store/pinia";
 
 export default class TodoPiniaRepository implements TodoRepository {
-  store: TodoStore = useTodoStore();
+  private store: TodoStore = useTodoStore();
 
   public getAll(): Todo[] {
     return this.store.todos;
