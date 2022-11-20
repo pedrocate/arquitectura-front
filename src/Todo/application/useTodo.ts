@@ -7,7 +7,7 @@ import { myContainer } from "@/inversify.config";
 
 @injectable()
 class TodoUseCases {
-  repository: TodoRepository;
+  private repository: TodoRepository;
 
   constructor(
     @inject(TYPES.TodoRepository) todoRepository: TodoRepository

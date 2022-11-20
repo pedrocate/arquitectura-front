@@ -6,19 +6,15 @@ import { injectable } from "inversify";
 
 @injectable()
 export default class TodoVuexRepository implements TodoRepository {
-  getAll(): Todo[] {
+  public getAll(): Todo[] {
     return store.state.todos;
   }
 
-  save(todos: Todo[]): void {
-    store.commit("replaceTodos", todos);
-  }
-
-  create(todo: Todo): void {
+  public create(todo: Todo): void {
     store.commit("addTodo", todo);
   }
 
-  update(todo: Todo): void {
+  public update(todo: Todo): void {
     store.commit("updateTodo", todo);
   }
 }

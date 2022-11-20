@@ -5,20 +5,20 @@ import { injectable } from "inversify";
 
 @injectable()
 export default class TodoLocalStorageRepository implements TodoRepository {
-  localStorageKey: string = "todo";
+  private localStorageKey: string = "todo";
 
-  getAll(): Todo[] {
+  private save(todos: Todo[]): void {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(todos));
+  }
+
+  public getAll(): Todo[] {
     const item = localStorage.getItem(this.localStorageKey);
 
     if (!item) return [];
     return JSON.parse(item);
   }
 
-  save(todos: Todo[]): void {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(todos));
-  }
-
-  create(todo: Todo): void {
+  public create(todo: Todo): void {
     const todos: Todo[] = this.getAll();
 
     if (!todos) return;
@@ -27,13 +27,13 @@ export default class TodoLocalStorageRepository implements TodoRepository {
     this.save(todos);
   }
 
-  update(todo: Todo): void {
+  public update(todo: Todo): void {
     const todos = this.getAll();
 
     if (!todos) return;
 
     const todosFiltered = todos.filter(
-      (todoItem: any) => todoItem.description !== todo.description
+      (todoItem: Todo) => todoItem.description !== todo.description
     );
     todosFiltered.push(todo);
 
