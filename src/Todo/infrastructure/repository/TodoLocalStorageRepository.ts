@@ -1,7 +1,7 @@
-import Todo from "@/Todo/domain/models/Todo";
-import TodoRepository from "@/Todo/domain/models/TodoRepository";
+import Todo from "@/Todo/domain/Todo";
+import ITodoRepository from "@/Todo/domain/ITodoRepository";
 
-export default class TodoLocalStorageRepository implements TodoRepository {
+export default class TodoLocalStorageRepository implements ITodoRepository {
   private localStorageKey: string = "todo";
 
   private save(todos: Todo[]): void {

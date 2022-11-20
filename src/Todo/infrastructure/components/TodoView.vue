@@ -14,7 +14,7 @@
 import { ref } from "vue";
 import TodoInput from "./TodoInput.vue";
 import TodoItem from "./TodoItem.vue";
-import Todo from "@/Todo/domain/models/Todo";
+import Todo from "@/Todo/domain/Todo";
 import useTodo from "@/Todo/infrastructure/plugins/todoUseCases";
 
 const { addTodo: addTodoUseCase, doTodo: doTodoUseCase } = useTodo();
