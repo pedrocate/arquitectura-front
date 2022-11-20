@@ -1,4 +1,4 @@
-import Todo from '@/Todo/domain/models/Todo';
+import Todo from '@/Todo/domain/Todo';
 import { createStore } from 'vuex';
 
 type TodoState = {
