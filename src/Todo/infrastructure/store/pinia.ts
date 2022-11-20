@@ -4,7 +4,6 @@ import Todo from "@/Todo/domain/models/Todo";
 export type TodoStore = {
   todos: Todo[];
   addTodo: (todo: Todo) => void;
-  replaceTodos: (todos: Todo[]) => void;
   updateTodo: (todoUpdated: Todo) => void;
 };
 
@@ -21,9 +20,6 @@ export const useTodoStore = defineStore("todos", {
   actions: {
     addTodo(todo: Todo): void {
       this.todos.push(todo);
-    },
-    replaceTodos(todos: Todo[]): void {
-      this.todos = [...todos];
     },
     updateTodo(todoUpdated: Todo): void {
       const todosFiltered: Todo[] = this.todos.filter(

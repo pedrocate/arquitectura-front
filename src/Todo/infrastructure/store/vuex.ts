@@ -15,9 +15,6 @@ export default createStore({
     addTodo(state: TodoState, todo: Todo): void {
       state.todos.push(todo);
     },
-    replaceTodos(state: TodoState, todos: Todo[]): void {
-      state.todos = [...todos];
-    },
     updateTodo(state: TodoState, todoUpdated: Todo): void {
       const todosFiltered: Todo[] = state.todos.filter((todo: Todo) => todo.description !== todoUpdated.description);
       todosFiltered.push(todoUpdated);
