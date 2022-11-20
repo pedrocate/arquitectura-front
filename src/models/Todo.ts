@@ -1,6 +1,6 @@
 export default class Todo {
-  description: string;
-  done: boolean;
+  public description: string;
+  public done: boolean;
 
   constructor(description: string, done: boolean = false) {
     this.description = description;
