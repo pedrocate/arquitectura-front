@@ -1,9 +1,9 @@
 import Todo from "@/models/Todo";
 import TodoLocalStorageRepository from "@/models/TodoLocalStorageRepository";
-import TodoRepository from "@/models/TodoRepository";
+import ITodoRepository from "@/models/ITodoRepository";
 
-export default (todoRepository: TodoRepository) => {
-  const repository: TodoRepository = todoRepository;
+export default (ITodoRepository: ITodoRepository) => {
+  const repository: ITodoRepository = ITodoRepository;
 
   const addTodo = (description: string) => {
     const todo = new Todo(description);

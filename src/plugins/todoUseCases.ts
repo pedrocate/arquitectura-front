@@ -1,8 +1,8 @@
 import useTodo from "@/useCases/useTodo";
 import TodoLocalStorageRepository from "@/models/TodoLocalStorageRepository";
-import TodoRepository from "@/models/TodoRepository";
+import ITodoRepository from "@/models/ITodoRepository";
 
 export default () => {
-  const repository: TodoRepository = new TodoLocalStorageRepository();
+  const repository: ITodoRepository = new TodoLocalStorageRepository();
   return useTodo(repository);
 };
