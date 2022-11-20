@@ -7,7 +7,7 @@ export default class Todo {
     this.done = done;
   }
 
-  do(): void {
+  public do(): void {
     this.done = true;
   }
 }
