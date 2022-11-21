@@ -1,5 +1,4 @@
 import Todo from "@/models/Todo";
-import TodoLocalStorageRepository from "@/models/TodoLocalStorageRepository";
 import ITodoRepository from "@/models/ITodoRepository";
 
 export default (ITodoRepository: ITodoRepository) => {
